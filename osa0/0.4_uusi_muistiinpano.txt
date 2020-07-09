@@ -1,0 +1,41 @@
+title Post and response
+
+note over Client:
+Form is submitted
+end note
+
+Client->Server: HTTP POST https://fullstack-exampleapp.herokuapp.com/new_note
+
+note over Server:
+Server receives the form data and 
+redirects client to /notes
+end note
+
+Server->Client: RESPONSE 302 Found, Redirect location /notes
+
+note over Client:
+Client gets HTML from redirected location
+end note
+Client->Server: HTTP GET https://fullstack-exampleapp.herokuapp.com/notes
+Server->Client: RESPONSE 200 OK (HTML-code from url /notes)
+
+note over Client:
+Client gets stylesheet and
+JS code as instructed in 
+HTML
+end note
+Client->Server: HTTP GET https://fullstack-exampleapp.herokuapp.com/main.css
+Server->Client: RESPONSE 200 OK (CSS main.css)
+Client->Server: HTTP GET https://fullstack-exampleapp.herokuapp.com/main.js
+Server->Client: RESPONSE 200 OK (JS from main.js)
+
+note over Client:
+Client executes main.js
+data.json is retrieved, parsed and rendered
+end note 
+Client->Server: HTTP GET https://fullstack-exampleapp.herokuapp.com/data.json
+Server->Client: RESPONSE 200 OK (JSON data from data.json)
+
+note over Client:
+<HTML>
+end note

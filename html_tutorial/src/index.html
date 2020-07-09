@@ -1,0 +1,45 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>UKK</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <h1>Lisää Bassoa!</h1>
+        <img src="basso.jpeg" alt="Urkki mainitsemassa alaäänien tärkeydestä." width="600" height="480">
+        <h3>Sanoo Urho Kaleva Kekkonen</h3>
+        <p>Kekkosen tiedettiin olevan kova jätkä. Hän oli muun muassa:</p>
+        <ul>
+            <li>Suomen presidentti</li>
+            <li>Palmuun kiipelijä</li>
+            <li>Kalju</li>
+            <li>Ensimmäinen Tohelo</li>
+            <li>Tosi kova jätkä!</li>
+        </ul>
+        <div>
+            <h4>Palauteloota</h4>
+            <p>Laitteleppa meille muutamalla sanalla mielipiteesi Kekkosesta</p>
+        </div>
+        <div>
+            <form action="/data" method="POST">
+                <ul>
+                    <li>
+                        <label for="name">Nimi:</label>
+                        <input type="text" id="name" name="user_name">
+                    </li>
+                    <li><label for="email">Sähkömiehen posti:</label>
+                        <input type="email" name="user_email" id="email">
+                    </li>
+                    <li>
+                        <label for="msg">Mielipiteesi:</label>
+                        <textarea id="msg" name="user_message"></textarea>
+                    </li>
+                    <li class="button">
+                        <button type="submit">Tulta!</button>
+                    </li>
+                </ul>
+            </form>
+        </div>   
+    </body>
+</html>

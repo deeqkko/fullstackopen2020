@@ -17,3 +17,8 @@ Commands used are in text-files in case of a problems with images.
 * 0.6 Uusi muistiinpano
     - 0.6_uusi_muistiinpano.png -> A sequence diagram of sending form data in single page app (no page reload).
     - 0.6_uusi_muistiinpano.txt -> Commands. 
+
+Osa 1
+* kurssitiedot 
+    - Exercises 1.1 and 1.2
+    - App Final version

@@ -20,5 +20,6 @@ Commands used are in text-files in case of a problems with images.
 
 Osa 1
 * kurssitiedot 
-    - Exercises 1.1 and 1.2
+    - Exercises 1.1 and 1.2 in index.1.1-1.2.js
+    - Exercises 1.3 to 1.5 in index.1.3-1.5.js
     - App Final version

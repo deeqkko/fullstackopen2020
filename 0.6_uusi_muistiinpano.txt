@@ -1,0 +1,35 @@
+title 0.6 Uusi muistiinpano
+
+
+note over Client:
+Form data is placed
+in to an object
+end note 
+
+note over Client:
+Event handler is created
+and page reload prevented
+end note
+
+note over Client:
+Data is placed to
+notes array and
+notes are redrawn
+end note
+
+note over Client:
+Data object is sent to
+a server
+end note
+Client->Server: HTTP POST https://fullstack-exampleapp.herokuapp.com/new_note_spa
+
+note over Server:
+Server sends a response
+in json-format ("note created")
+end note
+Server-> Client: RESPONSE 201 Created application/json
+
+note over Client:
+Response is logged
+in to a console
+{"message":"note created"}

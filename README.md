@@ -27,4 +27,8 @@ Osa 1
 * Unicafe
     - Exercises 1.6 through 1.11 in index.1.xx.js files
     - App final version
+
+* anecdotes
+    - Exercises 1.12 through 1.14 in index 1.xx.js files
+    - App final version
     

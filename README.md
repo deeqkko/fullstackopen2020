@@ -31,4 +31,10 @@ Osa 1
 * anecdotes
     - Exercises 1.12 through 1.14 in index 1.xx.js files
     - App final version
+
+Osa 2
+* kurssitiedot2
+    - Exercises 2.1 - 2.5 in App.kurssitiedot.<x.y>.js
+    - Component module in Courses.kurssitiedot.2.5.js for exercise 2.5
+    - App final version
     

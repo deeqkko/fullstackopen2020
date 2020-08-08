@@ -37,4 +37,6 @@ Osa 2
     - Exercises 2.1 - 2.5 in App.kurssitiedot.<x.y>.js
     - Component module in Courses.kurssitiedot.2.5.js for exercise 2.5
     - App final version
-    
+
+* puhelinluettelo
+    - App final version  

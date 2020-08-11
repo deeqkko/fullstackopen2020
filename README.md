@@ -39,4 +39,7 @@ Osa 2
     - App final version
 
 * puhelinluettelo
-    - App final version  
+    - App final version 
+
+* puhelinluettelo-axios
+    - App final version. Fetching phonebook from json-server

@@ -41,5 +41,8 @@ Osa 2
 * puhelinluettelo
     - App final version 
 
-* puhelinluettelo-axios
+* countries (Exercises 2.11 - 2.14)
+    - App final version
+
+* puhelinluetteloWithServer (Exercises 2.15 - 2.18)
     - App final version. Fetching phonebook from json-server

@@ -33,7 +33,9 @@ export const ResultCatalog = (props) => {
     return(
         <ul>
             {props.persons.map(person => 
-            <li key={person.id}>{person.name}<br />Tel: {person.number}</li>)}
+            <li key={person.id}>{person.name}<br />Tel: {person.number}
+            <button value={person.id} onClick={props.handleDeleteClick}>Delete</button>
+            </li>)}
         </ul>
     )
 }

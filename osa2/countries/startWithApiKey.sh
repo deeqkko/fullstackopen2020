@@ -1,0 +1,3 @@
+#!/bin/bash
+
+REACT_APP_API_KEY=9511d77ac8c61f0014d84724a34ee919 npm start

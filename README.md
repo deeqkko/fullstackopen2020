@@ -46,3 +46,6 @@ Osa 2
 
 * puhelinluetteloWithServer (Exercises 2.15 - 2.18)
     - App final version. Fetching phonebook from json-server
+
+* puhelinluetteloCssWithServer (Exercises 2.19 - 2.20)
+    - App final version. Styled notifications.

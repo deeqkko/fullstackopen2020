@@ -49,3 +49,9 @@ Osa 2
 
 * puhelinluetteloCssWithServer (Exercises 2.19 - 2.20)
     - App final version. Styled notifications.
+
+Osa 4
+
+* blogilista (Exercises 4.1 - 4.2)
+    - Modularized app
+    

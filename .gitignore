@@ -2,4 +2,6 @@ osa1/testing
 osa2/frontend
 osa2/backend
 osa2/frontaxios
+osa4/blogilista/.env
+osa4/blogilista/node_modules
 .gitignore

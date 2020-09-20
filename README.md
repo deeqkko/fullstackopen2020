@@ -54,4 +54,7 @@ Osa 4
 
 * blogilista (Exercises 4.1 - 4.2)
     - Modularized app
+
+* blogilista testing (Exercises 4.8 - 4.12)
+    - Steps 1 - 5
     

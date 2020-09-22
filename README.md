@@ -57,4 +57,8 @@ Osa 4
 
 * blogilista testing (Exercises 4.8 - 4.12)
     - Steps 1 - 5
+    - Exercises 4.8 - 4.10 in file blog_api.tests.js
+    - Refactored tests including the testing of ex 4.11 and 4.12 in
+    blogs_refactored_api.test.js
+    - Added functionality to modify and delete single db-entry
     

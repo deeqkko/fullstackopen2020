@@ -3,18 +3,18 @@ const Blog = require('../models/blog')
 const logger = require('../utils/logger')
 const blog_helpers = require('../utils/blog_helpers')
 
-blogsRouter.get('/', async (request, response, next) => {
+blogsRouter.get('/', async (request, response) => {
     const blogs = await Blog.find({})
     response.json(blogs.map(blog => blog.toJSON()))
       
   })
 
-blogsRouter.get('/:id', async (request, response, next) => {
+blogsRouter.get('/:id', async (request, response) => {
     const blog = await Blog.findById(request.params.id)
     response.json(blog.toJSON())
 })
   
-blogsRouter.post('/', async (request, response, next) => {  
+blogsRouter.post('/', async (request, response) => {  
     const body = request.body
     
     const blog = new Blog({
@@ -30,7 +30,7 @@ blogsRouter.post('/', async (request, response, next) => {
     response.json(savedBlog.toJSON())
   })
 
-blogsRouter.put('/:id', async (request, response, next) => {
+blogsRouter.put('/:id', async (request, response) => {
     const body = request.body
 
     const blog = {
@@ -41,7 +41,7 @@ blogsRouter.put('/:id', async (request, response, next) => {
     response.json(updateBlog.toJSON())
 })
 
-blogsRouter.delete('/:id', async (request, response, next) => {
+blogsRouter.delete('/:id', async (request, response) => {
     await Blog.findByIdAndDelete(request.params.id)
     response.status(204).end()
 })

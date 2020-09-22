@@ -1,3 +1,5 @@
+const Blog = require('../models/blog')
+
 const blogs = [
     {
     title: "Yousa in big doo-doo dis time!",
@@ -97,6 +99,23 @@ const favoriteBlog = (blogs) => {
         return blogs.filter((blog) => blog.likes === Number(favorite[0]))
 }
 
+const getFirstId = async () => {
+    let response = await Blog.find({})
+    let blogIds = response.map(blog => blog.id)
+    return blogIds[0].toString()
+}
+
+const getLastId = async () => {
+    let response = await Blog.find({})
+    let blogIds = response.map(blog => blog.id)
+    return blogIds.pop().toString()
+}
+
+
+const postEntry = async (addEntry) => {
+    const blog = new Blog(addEntry)
+    await blog.save()
+}
 
 module.exports = {
     blogs,
@@ -108,6 +127,9 @@ module.exports = {
     addEntry,
     nullLikes,
     missingTitle,
-    missingUrl
+    missingUrl,
+    getFirstId,
+    getLastId,
+    postEntry
 
 }

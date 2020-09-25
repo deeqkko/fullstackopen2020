@@ -55,6 +55,10 @@ Osa 4
 * blogilista (Exercises 4.1 - 4.2)
     - Modularized app
 
+* Testing (Exercises 4.3 - 4.7)
+    - tests in blogs.test.js
+    - functions and variables in utils/blog_helpers.js
+
 * blogilista testing (Exercises 4.8 - 4.15)
     - Steps 1 - 5
     - Exercises 4.8 - 4.10 in file blog_api.tests.js

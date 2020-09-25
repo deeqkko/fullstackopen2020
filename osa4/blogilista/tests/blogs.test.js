@@ -1,8 +1,4 @@
 const blogHelpers = require('../src/utils/blog_helpers')
-const app = require('../src/app')
-
-
-
 
 const blogs = blogHelpers.blogs
 const singleBlog = blogHelpers.singleBlog
@@ -35,15 +31,30 @@ describe(`totalLikes`, () => {
 
 describe(`favoriteBlog`, () => {
     test(`Gets the blog with largest blog.likes`, () => {
-        expect(blogHelpers.favoriteBlog(blogs)).toEqual(
-            [{
-                title: "Why is it not working?",
-                author: "Daniela DevOps",
-                url: "https://boohoo.net",
-                likes: 3000,
-                id: "5f4d14ff776cd127e935f72c"
-                }] 
-        )
+        const blog = blogHelpers.favoriteBlog(blogs)
+        expect(blog[0].likes).toBe(3000)
     })
+
+describe(`mostBlogs`, () => {
+    test(`Returns the writer with most blogs (Ex 4.6)`, () => {
+        const most = blogHelpers.mostBlogs()
+        expect(most).toMatchObject(
+            {
+                author: 'Jakke & Sepi',
+                blogs: 3
+            })
+    })
+})
+
+describe(`mostLikes`, () => {
+    test(`Returns the writer with most likes`, () => {
+        const mLikes = blogHelpers.mostLikes()
+        expect(mLikes).toMatchObject({
+            author: 'Jakke & Sepi',
+            likes: 561125
+        })
+    })
+})
+
 })
 

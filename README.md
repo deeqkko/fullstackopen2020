@@ -55,10 +55,14 @@ Osa 4
 * blogilista (Exercises 4.1 - 4.2)
     - Modularized app
 
-* blogilista testing (Exercises 4.8 - 4.12)
+* blogilista testing (Exercises 4.8 - 4.15)
     - Steps 1 - 5
     - Exercises 4.8 - 4.10 in file blog_api.tests.js
-    - Refactored tests including the testing of ex 4.11 and 4.12 in
+    - Refactored tests including the testing of ex 4.11 and 4.15 in
     blogs_refactored_api.test.js
     - Added functionality to modify and delete single db-entry
-    
+
+* blogilista (Exercises 4.15 - 4.22)
+    - Updated tests for blog API in blogs_refactored_api.test.js
+    - Login tests in login_api.test.js
+    - User tests in users.test.js

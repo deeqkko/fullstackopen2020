@@ -27,6 +27,10 @@ const blogSchema = new mongoose.Schema({
     likes: {
         type: Number,
         minlength: 1
+    },
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
     } 
 })
 
@@ -39,5 +43,7 @@ blogSchema.set('toJSON', {
         delete returnedObject.__v
     }
 })
+
+
 
 module.exports = mongoose.model('Blog', blogSchema)

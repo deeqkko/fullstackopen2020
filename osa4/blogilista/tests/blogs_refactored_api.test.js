@@ -1,17 +1,23 @@
 const mongoose = require('mongoose')
 const Blog = require('../src/models/blog')
+const User = require('../src/models/user')
 const app = require('../src/app')
 const blogHelpers = require('../src/utils/blog_helpers')
+const jwt = require('jsonwebtoken')
 
 const supertest = require('supertest')
 const blog_helpers = require('../src/utils/blog_helpers')
+const usersRouter = require('../src/controllers/users')
+const { response } = require('express')
 const api = supertest(app)
 
 const initialBlogList = blogHelpers.blogs
-const addEntry = blogHelpers.addEntry
+//const addEntry = blogHelpers.addEntry
 const nullLikes = blogHelpers.nullLikes
 const missingTitle = blogHelpers.missingTitle
 const missingUrl = blogHelpers.missingUrl
+
+var correctToken, incorrectToken = null
 
 describe(`GET-method tests`, () => {
     beforeEach(async () => {
@@ -30,12 +36,12 @@ describe(`GET-method tests`, () => {
         
     })
 
-    test(`All notes returned`, async() => {
+    test(`All blogs returned`, async() => {
         const response = await api.get(`/api/blogs`)
         expect(response.body).toHaveLength(initialBlogList.length)
     })
 
-    test(`Single note returned`, async() => {
+    test(`Single blog returned`, async() => {
         const firstId = await blogHelpers.getFirstId()
 
         const response = await api.get(`/api/blogs/${firstId}`)
@@ -49,18 +55,48 @@ describe(`GET-method tests`, () => {
 })
 
 describe(`POST-method tests`, () => {
+    beforeEach( async() => {
+        await User.deleteMany({})
+        await Blog.deleteMany({})
+        const newUsers = [
+            { username: "theuser", password: "el_secreto"},
+            { username: "kekkonen", password: "urkkiIsTheMan"}
+        ]
+
+        for (newUser of newUsers) {
+            await api
+                .post('/api/users')
+                .send(newUser)
+        }
+
+        const loginResponse = await api
+            .post('/api/login')
+            .send(newUsers[0])
+            
+        correctToken = 'Bearer ' + loginResponse.body.token   
+        
+    })
    
     test(`Post a blog`, async () => {
-        await api
+
+        const addEntry = {
+            title: "Testblog",
+            author: "Mrs Test",
+            url: "testing.net",
+            likes: 1,
+            }
+        
+        const post = await api
             .post('/api/blogs')
             .send(addEntry)
+            .set({ Authorization: correctToken })
             .expect(200)
             .expect('Content-Type', /application\/json/)
 
+        console.log(post.error)
         const response = await api.get('/api/blogs')
         const title = response.body.map(rs => rs.title)
 
-        expect(response.body).toHaveLength(initialBlogList.length + 1)
         expect(title).toContain('Testblog')
         })
 
@@ -68,6 +104,7 @@ describe(`POST-method tests`, () => {
         await api
             .post('/api/blogs')
             .send(nullLikes)
+            .set({ Authorization: correctToken })
             .expect(200)
             .expect('Content-Type', /application\/json/)
         
@@ -80,26 +117,40 @@ describe(`POST-method tests`, () => {
         await api
             .post('/api/blogs')
             .send(missingTitle)
+            .set({ Authorization: correctToken })
             .expect(400)
     })
     test(`Missing url field should return status 400`, async () => {
         await api
             .post('/api/blogs')
             .send(missingUrl)
+            .set({ Authorization: correctToken })
             .expect(400)
     })
     
 })
 
 describe(`PUT-method tests`, () => {
-
-    test(`Update likes count`, async() => {
-
+    beforeEach(async() => {
+        const addEntry = {
+            title: "Testblog",
+            author: "Mrs Test",
+            url: "testing.net",
+            likes: 1,
+            }
+    
         const blogs = await api.get('/api/blogs')
         if (blogs.body.length === 0) {
-            await blog_helpers.postEntry(addEntry)
+           await api
+            .post('/api/blogs')
+            .send(addEntry)
+            .set({Authorization: correctToken})
         }
         
+    })
+
+
+    test(`Update likes count`, async() => {
         const blogId = await blogHelpers.getFirstId()
         const updateBlog = {
             likes: "3000"
@@ -116,17 +167,52 @@ describe(`PUT-method tests`, () => {
 })
 
 describe('DELETE-method tests', () => {
+    beforeEach( async() => {
+        await Blog.deleteMany({})
 
-    test('Delete a blog entry', async () => {
+        const addEntry = {
+            title: "Testblog",
+            author: "Mrs Test",
+            url: "testing.net",
+            likes: 1,
+            }
 
-        const blogs = await api.get('/api/blogs')
-        if (blogs.body.length === 0) {
-            await blog_helpers.postEntry(addEntry)
-        }
+        const newUsers = [
+            { username: "theuser", password: "el_secreto"},
+            { username: "kekkonen", password: "urkkiIsTheMan"}
+        ]
+
+        const loginResponse = await api
+            .post('/api/login')
+            .send(newUsers[0])
+            
+        correctToken = 'Bearer ' + loginResponse.body.token
+        
+        await api
+            .post('/api/blogs')
+            .send(addEntry)
+            .set({ Authorization: correctToken })
+            .expect(200)
+            .expect('Content-Type', /application\/json/)
+    })
+
+    test('Deleting a blog entry fails with an incorrect token', async () => {
+        const lastId = await blogHelpers.getLastId()
+        const response = await api
+            .delete(`/api/blogs/${lastId}`)
+            .set({ Authorization: incorrectToken })
+            .expect(401)
+
+        expect(response.error.text).toContain('Missing or invalid token')
+        
+    })
+
+    test('Deleting a blog entry succeeds with a correct token', async () => {
 
         const lastId = await blogHelpers.getLastId()
         await api
             .delete(`/api/blogs/${lastId}`)
+            .set({ Authorization: correctToken })
             .expect(204)
     })
 })

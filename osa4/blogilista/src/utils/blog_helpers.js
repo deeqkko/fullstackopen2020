@@ -6,28 +6,32 @@ const blogs = [
     author: "Jar-Jar Binks",
     url: "https://doodoo.net",
     likes: 100,
-    id: "5f4bbba760e1cd0b5540e5c3"
+    id: "5f4bbba760e1cd0b5540e5c3",
+    user: "5f6b623c23aad5cc91834118"
     },
     {
     title: "Why is it not working?",
     author: "Daniela DevOps",
     url: "https://boohoo.net",
     likes: 3000,
-    id: "5f4d14ff776cd127e935f72c"
+    id: "5f4d14ff776cd127e935f72c",
+    user: "5f6b623c23aad5cc91834118"
     },
     {
     title: "I want to be the Sultan instead of the Sultan!",
     author: "Iznogood",
     url: "https://izno.good/sultan",
     likes: 200,
-    id: "5f4d1d938558ce2f723dafdd"
+    id: "5f4d1d938558ce2f723dafdd",
+    user: "5f6b623c23aad5cc91834118"
     },
     {
     title: "Da Blog",
     author: "Da Blogist",
     url: "https://dablog.net",
     likes: 33,
-    id: "5f4fc3618d79994f130a60a5"
+    id: "5f4fc3618d79994f130a60a5",
+    user: "5f6b623c23aad5cc91834118"
     }
     ]
 
@@ -63,7 +67,8 @@ const addEntry =
     title: "Testblog",
     author: "Mrs Test",
     url: "testing.net",
-    likes: 1
+    likes: 1,
+    userId: "5f6b623c23aad5cc91834118"
     }
 
 

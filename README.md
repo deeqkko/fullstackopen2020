@@ -70,3 +70,6 @@ Osa 4
     - Updated tests for blog API in blogs_refactored_api.test.js
     - Login tests in login_api.test.js
     - User tests in users.test.js
+
+Osa 5 
+    - Initial state

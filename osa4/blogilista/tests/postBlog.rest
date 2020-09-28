@@ -1,11 +1,10 @@
-POST http://localhost:3003/api/blogs
+POST http://localhost:3000/api/blogs
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRoZXVzZXIiLCJpZCI6IjVmNmIzODhkNjc0NmM5YWQ4YmEzYTBhZiIsImlhdCI6MTYwMDk1ODQ3NX0.eOLub5HdYqBo5EsqSsFX-I64JPwr_-QrqxzPowxcWwE
 
 {
-    "title":"Achtung blog",
+    "title":"ooooo",
     "author": "Skigge böy",
-    "url": "https://skiggeboyblog.net",
-    "likes": "0"
+    "url": "https://jfgdht.net"
     
 }

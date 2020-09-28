@@ -72,4 +72,10 @@ Osa 4
     - User tests in users.test.js
 
 Osa 5 
-    - Initial state
+
+* blogilista frontend (Exercises 5.1 - 5.4)
+    - User logging with local storage
+    - Posting a blog
+    - Skeleton notifications
+        - A new blog notification
+        - Login failure

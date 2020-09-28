@@ -24,7 +24,7 @@ const unknownUrl = (request, response) => {
 }
 
 const errorHandler = (error, request, response, next) => {
-    logger.error(error.name)
+    logger.error(error)
 
     if (error.name === 'CastError') {
         return response.status(400).send({error: 'Invalid or malformatted Id'})

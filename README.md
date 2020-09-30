@@ -79,3 +79,6 @@ Osa 5
     - Skeleton notifications
         - A new blog notification
         - Login failure
+
+* blogilista frontend (Exercises 5.5 - 5.10)
+    -Everything works, except delete button (not reliable)

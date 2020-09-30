@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Blog from './components/Blog'
 import LoginForm from './components/LoginForm'
 import CreateEntry from './components/BlogForm'
+import TogglableForm from './components/TogglableForm'
 import blogService from './services/blogs'
 import loginService from './services/login'
 
@@ -11,17 +12,15 @@ const App = () => {
   const [password, setPassword] = useState('')
   const [user, setUser] = useState(null)
   const [notification, setNotification] = useState(null)
-  const [newBlog, setNewBlog] = useState({
-    title:'',
-    author:'',
-    url:''
-  })
+
+  
+  
 
   useEffect(() => {
     blogService.getAll().then(blogs =>
       setBlogs( blogs )
-    ) 
-  }, [ setNotification ])
+    )
+  }, [ notification ])
 
   useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem('loggedBlogAppUser')
@@ -55,10 +54,14 @@ const App = () => {
       <>
         <p>Logged in as {user.name}</p>
         <div>
+        <TogglableForm 
+          showButtonLabel='New Blog'
+          hideButtonLabel='Cancel'
+          >
           <CreateEntry 
-            entryHandler={handleCreateEntrySubmit}
-            setNewBlog={handleCreateEntryChange}
+            notificationHandler={notificationHandler}
           />
+          </TogglableForm>
         </div>
         <div>
           <button onClick={logout}>Logout</button>
@@ -67,24 +70,6 @@ const App = () => {
     )
   }
 
-  const handleCreateEntryChange = (event) => {
-      const value = event.target.value
-      setNewBlog({
-        ...newBlog,
-        [event.target.name]: value
-      })
-  }
-
-  const handleCreateEntrySubmit = async (event) => {
-    event.preventDefault()
-    console.log(`New Blog: ${JSON.stringify(newBlog)}`)
-    const response = await blogService.create(newBlog)
-    console.log(response)
-    notificationHandler({
-      msg: 'A new blog posted!',
-      error: false
-    })
-  }
 
   const handleLogin = async (event) => {
     event.preventDefault()
@@ -125,8 +110,15 @@ const App = () => {
       {user === null ?
         loginForm() :
         loggedUserFunctions()}
-      {blogs.map(blog =>
-        <Blog key={blog.id} blog={blog} />
+      {blogs
+        .sort((a, b)=> 
+        parseFloat(b.likes) - parseFloat(a.likes))
+        .map(blog =>
+        <Blog key={blog.id} 
+              blog={blog} 
+              user={user}
+              notificationHandler={notificationHandler}
+              />
       )}
     </div>
   )

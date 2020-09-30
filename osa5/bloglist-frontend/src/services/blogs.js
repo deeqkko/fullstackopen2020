@@ -22,9 +22,17 @@ const create = async newEntry => {
   return response.error
 }
 
-const update = async (id, newData) => {
-  const request = await axios.put(`${baseUrl}/${id}`, newData)
+const update = (id, newData) => {
+  const request = axios.put(`${baseUrl}/${id}`, newData)
   return request.then(response => response.data)
 }
 
-export default { getAll, create, update, setToken }
+const deleteBlog = (id) => {
+  const config = {
+    headers: { Authorization: token}
+  }
+  const request = axios.delete(`${baseUrl}/${id}`, config)
+  return request.data
+}
+
+export default { getAll, create, update, deleteBlog, setToken }

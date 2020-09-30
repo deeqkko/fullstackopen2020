@@ -1,33 +1,67 @@
-import React from 'react'
+import React, {useState} from 'react'
+import blogService from '../services/blogs'
 
-const CreateEntry = (props) => {
+const CreateEntry = ({
+    notificationHandler
+}) => {
+
+    const [newBlog, setNewBlog] = useState({
+        title:'',
+        author:'',
+        url:''
+      })
+
+      const handleCreateEntryChange = (event) => {
+        const value = event.target.value
+        setNewBlog({
+          ...newBlog,
+          [event.target.name]: value
+        })
+    }
+
+    const handleCreateEntrySubmit = async (event) => {
+        event.preventDefault()
+        console.log(`New Blog: ${JSON.stringify(newBlog)}`)
+        const response = await blogService.create(newBlog)
+        console.log(response)
+        setNewBlog({
+            title:'',
+            author:'',
+            url:''
+          })
+        notificationHandler({
+          msg: 'A new blog posted!',
+          error: false
+        })
+      }
+
     return(
-        <form onSubmit={props.entryHandler}>
+        <form onSubmit={handleCreateEntrySubmit}>
             <div>
                 Title:
                 <input 
                     type="text"
-                    value={props.title}
+                    value={newBlog.title}
                     name="title"
-                    onChange={props.setNewBlog}
+                    onChange={handleCreateEntryChange}
                     />
             </div>
             <div>
                 Author:
                 <input
                     type="text"
-                    value={props.author}
+                    value={newBlog.author}
                     name="author"
-                    onChange={props.setNewBlog}
+                    onChange={handleCreateEntryChange}
                     />
             </div>
             <div>
                 Url:
                 <input
                     type="text"
-                    value={props.url}
+                    value={newBlog.url}
                     name="url"
-                    onChange={props.setNewBlog}
+                    onChange={handleCreateEntryChange}
                     />
             </div>
             <button type="submit">Submit</button>

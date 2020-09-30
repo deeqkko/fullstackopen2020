@@ -13,8 +13,8 @@ const App = () => {
   const [user, setUser] = useState(null)
   const [notification, setNotification] = useState(null)
 
-  
-  
+
+
 
   useEffect(() => {
     blogService.getAll().then(blogs =>
@@ -35,7 +35,7 @@ const App = () => {
   const loginForm = () => {
     return(
       <LoginForm
-        handleLogin={handleLogin} 
+        handleLogin={handleLogin}
         username={username}
         setUsername={({ target }) => setUsername(target.value)}
         password={password}
@@ -54,13 +54,13 @@ const App = () => {
       <>
         <p>Logged in as {user.name}</p>
         <div>
-        <TogglableForm 
-          showButtonLabel='New Blog'
-          hideButtonLabel='Cancel'
+          <TogglableForm
+            showButtonLabel='New Blog'
+            hideButtonLabel='Cancel'
           >
-          <CreateEntry 
-            notificationHandler={notificationHandler}
-          />
+            <CreateEntry
+              notificationHandler={notificationHandler}
+            />
           </TogglableForm>
         </div>
         <div>
@@ -78,17 +78,17 @@ const App = () => {
         username, password
       })
 
-    window.localStorage.setItem(
-      'loggedBlogAppUser',
-      JSON.stringify(user)
+      window.localStorage.setItem(
+        'loggedBlogAppUser',
+        JSON.stringify(user)
       )
 
-    setUser(user)
-    setUsername('')
-    setPassword('')
+      setUser(user)
+      setUsername('')
+      setPassword('')
     } catch (exception) {
       notificationHandler({
-        msg: "Incorrect username or password",
+        msg: 'Incorrect username or password',
         error: false
       })
     }
@@ -111,15 +111,15 @@ const App = () => {
         loginForm() :
         loggedUserFunctions()}
       {blogs
-        .sort((a, b)=> 
-        parseFloat(b.likes) - parseFloat(a.likes))
+        .sort((a, b) =>
+          parseFloat(b.likes) - parseFloat(a.likes))
         .map(blog =>
-        <Blog key={blog.id} 
-              blog={blog} 
-              user={user}
-              notificationHandler={notificationHandler}
-              />
-      )}
+          <Blog key={blog.id}
+            blog={blog}
+            user={user}
+            notificationHandler={notificationHandler}
+          />
+        )}
     </div>
   )
 }

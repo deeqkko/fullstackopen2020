@@ -14,7 +14,7 @@ const getAll = () => {
 
 const create = async newEntry => {
   const config = {
-    headers: { Authorization: token}
+    headers: { Authorization: token }
   }
   console.log(token)
   console.log(config)
@@ -29,7 +29,7 @@ const update = (id, newData) => {
 
 const deleteBlog = (id) => {
   const config = {
-    headers: { Authorization: token}
+    headers: { Authorization: token }
   }
   const request = axios.delete(`${baseUrl}/${id}`, config)
   return request.data

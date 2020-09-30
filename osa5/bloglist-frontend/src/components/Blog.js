@@ -17,14 +17,14 @@ const Blog = ({ blog, user, notificationHandler }) => {
     borderWidth: 2,
     marginBottom: 5
   }
-  
 
-  const hideWhenVisible = { display: visible ? 'none' : ''}
-  const showWhenVisible = { display: visible ? '' : 'none'}
+
+  const hideWhenVisible = { display: visible ? 'none' : '' }
+  const showWhenVisible = { display: visible ? '' : 'none' }
 
   const deleteBlogRef = useRef()
 
-  
+
 
 
   // useEffect(() => {
@@ -33,17 +33,17 @@ const Blog = ({ blog, user, notificationHandler }) => {
   //   }
   //   sendLikes(likesAdd)
   // }, [ handleLikes ]) //eslint-disable-line react-hooks/exhaustive-deps
-  
+
 
 
   const toggleVisible = () => {
-      setVisible(!visible)
-      setDelVisible()
+    setVisible(!visible)
+    setDelVisible()
   }
 
   const handleLikes = () => {
     setLikesAdd({
-      likes: blog.likes += 1 
+      likes: blog.likes += 1
     })
   }
 
@@ -53,52 +53,52 @@ const Blog = ({ blog, user, notificationHandler }) => {
       blogsService.deleteBlog(blog.id)
       notificationHandler(`${blog.title} deleted.`)
     }
-    
+
   }
 
   const setDelVisible = () => {
     if ((user) && (user.username && blog.user) && (user.username === blog.user.username)) {
-      console.log("True")
+      console.log('True')
       deleteBlogRef.current.toggleVisible()
-    } 
+    }
   }
 
   useEffect(() => {
     const sendLikes = async () => {
-    if (blog.id) {
-      await blogsService.update(blog.id, likesAdd)
+      if (blog.id) {
+        await blogsService.update(blog.id, likesAdd)
       }
     }
     sendLikes(likesAdd)
   }, [ handleLikes ]) //eslint-disable-line react-hooks/exhaustive-deps
-  
+
 
   return(
     <>
-  <div style={hideWhenVisible}>
-    <div style={blogStyle}>
-      <h3>{blog.title}</h3>
-      <button onClick={toggleVisible}>More</button>
-    </div>
-  </div>
-  <div style={showWhenVisible}>
-  <div style={blogStyle}>
-    <h3>{blog.title}</h3>
-    <p>
-      <b>Author:</b> {blog.author}<br/>
-      <b>URL:</b> {blog.url}<br/>
-      <b>Likes:</b> {blog.likes}
-      <button onClick={handleLikes}>Like</button>
-    </p>
-   <button onClick={toggleVisible}>Hide</button>
-   <DeleteBlog 
-      handleDelete={handleDelete} 
-      ref={deleteBlogRef}
-      />
-  </div>
-  </div>
-  </>
+      <div style={hideWhenVisible}>
+        <div style={blogStyle}>
+          <h3>{blog.title}</h3>
+          <button onClick={toggleVisible}>More</button>
+        </div>
+      </div>
+      <div style={showWhenVisible}>
+        <div style={blogStyle}>
+          <h3>{blog.title}</h3>
+          <p>
+            <b>Author:</b> {blog.author}<br/>
+            <b>URL:</b> {blog.url}<br/>
+            <b>Likes:</b> {blog.likes}
+            <button onClick={handleLikes}>Like</button>
+          </p>
+          <button onClick={toggleVisible}>Hide</button>
+          <DeleteBlog
+            handleDelete={handleDelete}
+            ref={deleteBlogRef}
+          />
+        </div>
+      </div>
+    </>
   )
-  }
+}
 
 export default Blog

@@ -82,3 +82,8 @@ Osa 5
 
 * blogilista frontend (Exercises 5.5 - 5.10)
     -Everything works, except delete button (not reliable)
+
+* blogilista frontend (Exercises 5.11 - 5.12)
+    -PropTypes defined to TogglableForm component (components/TogglableForm.js)
+    -Eslint -> OK
+     

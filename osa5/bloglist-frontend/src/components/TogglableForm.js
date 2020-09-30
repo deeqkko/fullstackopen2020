@@ -1,29 +1,35 @@
 import React, { useState } from 'react'
+import PropTypes from 'prop-types'
 
 const TogglableForm = props  => {
 
-    const [visible, setVisible] = useState(false)
+  TogglableForm.propTypes = {
+    showButtonLabel: PropTypes.string.isRequired,
+    hideButtonLabel: PropTypes.string.isRequired
+  }
 
-    const hideWhenVisible = { display: visible ? 'none' : ''}
-    const showWhenVisible = { display: visible ? '' : 'none'}
+  const [visible, setVisible] = useState(false)
 
-    const toggleVisible = () => {
-        setVisible(!visible)
-    }
+  const hideWhenVisible = { display: visible ? 'none' : '' }
+  const showWhenVisible = { display: visible ? '' : 'none' }
+
+  const toggleVisible = () => {
+    setVisible(!visible)
+  }
 
 
-    return(
-        <div>
-            <div style={hideWhenVisible}>
-                <h3>{props.header}</h3>
-                <button onClick={toggleVisible}>{props.showButtonLabel}</button>
-            </div>
-            <div style={showWhenVisible}>
-                {props.children}
-                <button onClick={toggleVisible}>{props.hideButtonLabel}</button>
-            </div>
-        </div>
-    )
+  return(
+    <div>
+      <div style={hideWhenVisible}>
+        <h3>{props.header}</h3>
+        <button onClick={toggleVisible}>{props.showButtonLabel}</button>
+      </div>
+      <div style={showWhenVisible}>
+        {props.children}
+        <button onClick={toggleVisible}>{props.hideButtonLabel}</button>
+      </div>
+    </div>
+  )
 }
 
 export default TogglableForm

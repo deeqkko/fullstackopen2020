@@ -1,35 +1,35 @@
 import React from 'react'
 
 const LoginForm = ({
-    username,
-    password,
-    handleLogin,
-    setUsername,
-    setPassword
+  username,
+  password,
+  handleLogin,
+  setUsername,
+  setPassword
 }) => {
-   return(
+  return(
     <form onSubmit={handleLogin}>
-        <div>
+      <div>
             Username:
-            <input 
-                type="text"
-                value={username}
-                name="Username"
-                onChange={setUsername}
-                />
-        </div>
-        <div>
+        <input
+          type="text"
+          value={username}
+          name="Username"
+          onChange={setUsername}
+        />
+      </div>
+      <div>
             Password:
-            <input
-                type="password"
-                value={password}
-                name="Password"
-                onChange={setPassword}
-                />
-        </div>
-        <button type="submit">Login</button>
+        <input
+          type="password"
+          value={password}
+          name="Password"
+          onChange={setPassword}
+        />
+      </div>
+      <button type="submit">Login</button>
     </form>
-   
-   )}
+
+  )}
 
 export default LoginForm

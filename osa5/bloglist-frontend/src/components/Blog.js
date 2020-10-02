@@ -24,18 +24,6 @@ const Blog = ({ blog, user, notificationHandler }) => {
 
   const deleteBlogRef = useRef()
 
-
-
-
-  // useEffect(() => {
-  //   const sendLikes = async () => {
-  //     await blogsService.update(blog.id, likesAdd)
-  //   }
-  //   sendLikes(likesAdd)
-  // }, [ handleLikes ]) //eslint-disable-line react-hooks/exhaustive-deps
-
-
-
   const toggleVisible = () => {
     setVisible(!visible)
     setDelVisible()
@@ -74,14 +62,15 @@ const Blog = ({ blog, user, notificationHandler }) => {
 
 
   return(
-    <>
-      <div style={hideWhenVisible}>
+    <div>
+      <div style={hideWhenVisible} className='hide'>
         <div style={blogStyle}>
           <h3>{blog.title}</h3>
+          <p>{blog.author}</p>
           <button onClick={toggleVisible}>More</button>
         </div>
       </div>
-      <div style={showWhenVisible}>
+      <div style={showWhenVisible} className='show'>
         <div style={blogStyle}>
           <h3>{blog.title}</h3>
           <p>
@@ -97,7 +86,7 @@ const Blog = ({ blog, user, notificationHandler }) => {
           />
         </div>
       </div>
-    </>
+    </div>
   )
 }
 

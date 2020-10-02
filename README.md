@@ -86,4 +86,8 @@ Osa 5
 * blogilista frontend (Exercises 5.11 - 5.12)
     -PropTypes defined to TogglableForm component (components/TogglableForm.js)
     -Eslint -> OK
+
+* blogilista frontend testing (Exercises 5.13 - 5.15)
+    -5.15 has a problem. Like button is fired and like count is increasing
+    but mockFn.mock.calls is still an empty array
      

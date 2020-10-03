@@ -31,6 +31,11 @@ app.use('/api/login', loginRouter)
 app.use('/api/blogs', blogsRouter)
 app.use('/api/users', usersRouter)
 
+if (process.env.NODE_ENV === 'test') {
+  const resetRouter = require('./controllers/reset')
+  app.use('/api/testing', resetRouter)
+}
+
 app.use(middleware.unknownUrl)
 app.use(middleware.errorHandler)
 

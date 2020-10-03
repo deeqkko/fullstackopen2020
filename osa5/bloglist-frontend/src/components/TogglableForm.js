@@ -22,11 +22,11 @@ const TogglableForm = props  => {
     <div>
       <div style={hideWhenVisible}>
         <h3>{props.header}</h3>
-        <button onClick={toggleVisible}>{props.showButtonLabel}</button>
+        <button id='newblog' onClick={toggleVisible}>{props.showButtonLabel}</button>
       </div>
       <div style={showWhenVisible}>
         {props.children}
-        <button onClick={toggleVisible}>{props.hideButtonLabel}</button>
+        <button id='cancel' onClick={toggleVisible}>{props.hideButtonLabel}</button>
       </div>
     </div>
   )

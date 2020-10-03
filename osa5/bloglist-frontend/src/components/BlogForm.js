@@ -40,6 +40,7 @@ const CreateEntry = ({
       <div>
                 Title:
         <input
+          id='title'
           type="text"
           value={newBlog.title}
           name="title"
@@ -49,6 +50,7 @@ const CreateEntry = ({
       <div>
                 Author:
         <input
+          id='author'
           type="text"
           value={newBlog.author}
           name="author"
@@ -58,13 +60,14 @@ const CreateEntry = ({
       <div>
                 Url:
         <input
+          id='url'
           type="text"
           value={newBlog.url}
           name="url"
           onChange={handleCreateEntryChange}
         />
       </div>
-      <button type="submit">Submit</button>
+      <button id='submit' type="submit">Submit</button>
     </form>
   )
 }

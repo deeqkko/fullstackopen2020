@@ -29,10 +29,12 @@ const Blog = ({ blog, user, notificationHandler }) => {
     setDelVisible()
   }
 
-  const handleLikes = () => {
+  const handleLikes = async() => {
     setLikesAdd({
       likes: blog.likes += 1
     })
+    console.log(likesAdd)
+    await blogsService.update(blog.id, { likes: blog.likes })
   }
 
   const handleDelete = () => {
@@ -45,20 +47,17 @@ const Blog = ({ blog, user, notificationHandler }) => {
   }
 
   const setDelVisible = () => {
+
     if ((user) && (user.username && blog.user) && (user.username === blog.user.username)) {
-      console.log('True')
-      deleteBlogRef.current.toggleVisible()
+      deleteBlogRef.current.toggleVisible(true)
+    } else {
+      deleteBlogRef.current.toggleVisible(false)
     }
   }
 
   useEffect(() => {
-    const sendLikes = async () => {
-      if (blog.id) {
-        await blogsService.update(blog.id, likesAdd)
-      }
-    }
-    sendLikes(likesAdd)
-  }, [ handleLikes ]) //eslint-disable-line react-hooks/exhaustive-deps
+    setDelVisible() //eslint-disable-next-line
+  }, [ toggleVisible ]) 
 
 
   return(
@@ -67,18 +66,20 @@ const Blog = ({ blog, user, notificationHandler }) => {
         <div style={blogStyle}>
           <h3>{blog.title}</h3>
           <p>{blog.author}</p>
-          <button onClick={toggleVisible}>More</button>
+          <button id='more' onClick={toggleVisible}>More</button>
         </div>
       </div>
       <div style={showWhenVisible} className='show'>
         <div style={blogStyle}>
           <h3>{blog.title}</h3>
+          <div id="info">
           <p>
             <b>Author:</b> {blog.author}<br/>
             <b>URL:</b> {blog.url}<br/>
             <b>Likes:</b> {blog.likes}
-            <button onClick={handleLikes}>Like</button>
+            <button id='like' onClick={handleLikes}>Like</button>
           </p>
+          </div>
           <button onClick={toggleVisible}>Hide</button>
           <DeleteBlog
             handleDelete={handleDelete}

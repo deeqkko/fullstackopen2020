@@ -12,8 +12,7 @@ const App = () => {
   const [password, setPassword] = useState('')
   const [user, setUser] = useState(null)
   const [notification, setNotification] = useState(null)
-
-
+  const [isLogged, setIsLogged] = useState(false)
 
 
   useEffect(() => {
@@ -22,14 +21,15 @@ const App = () => {
     )
   }, [ notification ])
 
-  useEffect(() => {
-    const loggedUserJSON = window.localStorage.getItem('loggedBlogAppUser')
-    if (loggedUserJSON){
-      const user = JSON.parse(loggedUserJSON)
-      setUser(user)
-      blogService.setToken(user.token.toString())
-    }
-  }, [ setUser ])
+  // useEffect(() => {
+  //   const loggedUserJSON = window.localStorage.getItem('loggedBlogAppUser')
+  //   console.log(loggedUserJSON)
+  //   if (loggedUserJSON){
+  //     const user = JSON.parse(loggedUserJSON)
+  //     setUser(user)
+  //     blogService.setToken(user.token.toString())
+  //   }
+  // }, [ setUser ])
 
 
   const loginForm = () => {
@@ -46,6 +46,7 @@ const App = () => {
 
   const logout = () => {
     setUser(null)
+    setIsLogged(false)
     window.localStorage.removeItem('loggedBlogAppUser')
   }
 
@@ -64,7 +65,7 @@ const App = () => {
           </TogglableForm>
         </div>
         <div>
-          <button onClick={logout}>Logout</button>
+          <button id='logout' onClick={logout}>Logout</button>
         </div>
       </>
     )
@@ -82,7 +83,7 @@ const App = () => {
         'loggedBlogAppUser',
         JSON.stringify(user)
       )
-
+      setIsLogged(true)
       setUser(user)
       setUsername('')
       setPassword('')
@@ -103,6 +104,17 @@ const App = () => {
 
   }
 
+  useEffect(() => {
+    const loggedUserJSON = window.localStorage.getItem('loggedBlogAppUser')
+    console.log('Hook Triggered')
+    if (loggedUserJSON){
+      console.log(`Hook: ${loggedUserJSON}`)
+      const user = JSON.parse(loggedUserJSON)
+      setUser(user)
+      blogService.setToken(user.token.toString())
+    }
+  }, [ isLogged ])
+
   return (
     <div>
       <h2>blogs</h2>
@@ -110,6 +122,7 @@ const App = () => {
       {user === null ?
         loginForm() :
         loggedUserFunctions()}
+      <div id='bloglist'>
       {blogs
         .sort((a, b) =>
           parseFloat(b.likes) - parseFloat(a.likes))
@@ -120,6 +133,7 @@ const App = () => {
             notificationHandler={notificationHandler}
           />
         )}
+        </div>
     </div>
   )
 }

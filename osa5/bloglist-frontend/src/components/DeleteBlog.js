@@ -11,10 +11,8 @@ const DeleteBlog = React.forwardRef((props, ref) => {
   const hideWhenVisible = { display: visible ? 'none' : '' }
   const showWhenVisible = { display: visible ? '' : 'none' }
 
-  const toggleVisible = () => {
-    if (visible === false) {
-      setVisible(true)
-    }
+  const toggleVisible = (visibility) => {
+      setVisible(visibility)
   }
 
   useImperativeHandle(ref, () => {
@@ -28,7 +26,7 @@ const DeleteBlog = React.forwardRef((props, ref) => {
       <div style={hideWhenVisible}>
       </div>
       <div style={showWhenVisible}>
-        <button onClick={props.handleDelete}>Delete</button>
+        <button id='delete' onClick={props.handleDelete}>Delete</button>
       </div>
     </div>
   )

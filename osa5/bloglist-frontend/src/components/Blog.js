@@ -46,6 +46,7 @@ const Blog = ({ blog, user, notificationHandler }) => {
 
   }
 
+
   const setDelVisible = () => {
 
     if ((user) && (user.username && blog.user) && (user.username === blog.user.username)) {

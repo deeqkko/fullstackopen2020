@@ -88,8 +88,7 @@ Osa 5
     -Eslint -> OK
 
 * blogilista frontend testing (Exercises 5.13 - 5.15)
-    -5.15 has a problem. Like button is fired and like count is increasing
-    but mockFn.mock.calls is still an empty array
+    - Tests in components/Blog.test.js
 
 * blogilista E2E testing (Exercises 5.17 - 5.22)
     - Tests in cypress/integration/blog_app-spec.js

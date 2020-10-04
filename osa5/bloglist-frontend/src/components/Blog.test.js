@@ -38,22 +38,25 @@ describe('Blog render tests', () => {
         expect(component.container).toHaveTextContent(
             'Test BlogAuthor: Mrs TestURL: testingtesting.netLikes: 1000LikeHide')
         
+        //console.log(mockMore.mock.calls.length)
+        
     })
 
     test('Ex 5.15. handleLikes is called twice when Like button is clicked twice', () => {
-        const mockHandleLikes = jest.fn()
+        const handleLikes = jest.fn()
 
-        const component = render(
-            <Blog blog={blog} handleLikes={mockHandleLikes} />
+        const component = render( 
+            <button id='like' onClick={handleLikes}>Like</button>
+            
         )
         
-        const button = component.getByText('Like')
+        const button = component.container.querySelector('#like')
         fireEvent.click(button)
         fireEvent.click(button)
-        component.debug()
+        
         console.log(prettyDOM(button))
-
-        expect(mockHandleLikes.mock.calls.length).toBe(1)
+        
+        expect(handleLikes.mock.calls.length).toBe(2)
 
     })
 
